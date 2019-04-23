@@ -1,4 +1,4 @@
-FROM codait/max-base:v1.1.0
+FROM codait/max-base:v1.1.1
 
 # Fill in these with a link to the bucket containing the model and the model file name
 ARG model_bucket=http://max-assets.s3-api.us-geo.objectstorage.softlayer.net/facial-recognizer/1.0
@@ -14,7 +14,9 @@ COPY requirements.txt /workspace
 RUN pip install -r requirements.txt
 
 COPY . /workspace
-RUN md5sum -c md5sums.txt # check file integrity
+
+# check file integrity
+RUN md5sum -c md5sums.txt
 
 EXPOSE 5000
 
